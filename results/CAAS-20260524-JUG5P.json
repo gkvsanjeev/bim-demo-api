@@ -1,0 +1,45 @@
+{
+  "application_ref": "CAAS-20260524-JUG5P",
+  "ifc_filename": "ZHA-B-BWK-C-MR-R18.ifc",
+  "shell_extraction": {
+    "status": "ok",
+    "element_count": 1567,
+    "vertex_count": 51562,
+    "triangle_count": 97124
+  },
+  "height_analysis": {
+    "elevation_m_local": 0.0,
+    "min_z_m": -2.05,
+    "max_z_m": 69.86,
+    "height_m": 71.91
+  },
+  "gfa": {
+    "gfa_m2": 74749.89
+  },
+  "facade_materials": {
+    "unique_material_count": 5,
+    "materials": [
+      {
+        "name": "NLRS_f2_beton prefab",
+        "element_count": 915
+      },
+      {
+        "name": "NLRS_f2_beton ihwg",
+        "element_count": 588
+      },
+      {
+        "name": "NLRS_n7_isolatie EPS",
+        "element_count": 40
+      },
+      {
+        "name": "NLRS_f1_kalkzandsteen wit",
+        "element_count": 8
+      },
+      {
+        "name": "Analytical Floor Surface",
+        "element_count": 3
+      }
+    ]
+  },
+  "errors": []
+}

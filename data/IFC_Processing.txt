@@ -1,0 +1,55 @@
+┌──────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │           File           │                                               Role                                               │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ifc/loader.py            │ Open IFC file, raise IFCLoadError on failure                                                     │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ifc/shell.py             │ Main chokepoint — filters exterior elements, tessellates geometry, returns ShellResult           │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ifc/facade.py            │ Resolves material name + thickness from IfcMaterialLayerSetUsage / IfcMaterialList / IfcMaterial │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ifc/gfa.py               │ Sums upward-facing triangle areas per floor slab across all storeys                              │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ models/shell.py          │ ShellResult dataclass + FacadeMaterial                                                           │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ models/errors.py         │ IFCLoadError, ShellExtractionError                                                               │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ scripts/extract_shell.py │ iep-extract-shell <file.ifc> CLI                                                                 │
+  └──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Exterior filter logic (in shell.py):
+  Exterior filter logic (in shell.py):
+  1. IfcRoof / IfcCurtainWall → always exterior
+  2. IfcSlab with PredefinedType=ROOF|BASESLAB → always exterior
+  3. All others → check Pset_WallCommon.IsExternal (or equivalent Pset); include if True or if property is absent (conservative)
+
+  ---
+  Extraction results on ZHA-B-BWK-C-HR-R18.ifc
+  │ ifc/shell.py             │ Main chokepoint — filters exterior elements, tessellates geometry, returns ShellResult           │
+  │ ifc/facade.py            │ Resolves material name + thickness from IfcMaterialLayerSetUsage / IfcMaterialList / IfcMaterial │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ifc/gfa.py               │ Sums upward-facing triangle areas per floor slab across all storeys                              │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ models/shell.py          │ ShellResult dataclass + FacadeMaterial                                                           │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ models/errors.py         │ IFCLoadError, ShellExtractionError                                                               │
+  ├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ scripts/extract_shell.py │ iep-extract-shell <file.ifc> CLI                                                                 │
+  └──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Exterior filter logic (in shell.py):
+  1. IfcRoof / IfcCurtainWall → always exterior
+  2. IfcSlab with PredefinedType=ROOF|BASESLAB → always exterior
+  3. All others → check Pset_WallCommon.IsExternal (or equivalent Pset); include if True or if property is absent (conservative)
+
+  ---
+  Extraction results on ZHA-B-BWK-C-HR-R18.ifc
+
+  {
+    "shell_extraction": { "element_count": 3174, "vertices": 280406, "triangles": 540984 },
+    "height_analysis":  { "min_z_m": -5.0, "max_z_m": 214.975, "height_m": 219.975 },
+    "gfa":              { "gfa_m2": 71005.73 },
+    "facade_materials": { "unique": 9, "dominant": "NLRS_f2_beton prefab (2078 elements)" }
+  }
+
+  Note: This sample IFC is Dutch (RD New / EPSG:28992), not Singapore SVY21. The geo-conversion step (geo/convert.py) will apply the SVY21 transform when the
+  real CORENET X files arrive.

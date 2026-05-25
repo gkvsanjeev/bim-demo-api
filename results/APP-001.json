@@ -1,0 +1,61 @@
+{
+  "application_ref": "APP-001",
+  "ifc_filename": "ZHA-B-BWK-C-HR-R18.ifc",
+  "shell_extraction": {
+    "status": "ok",
+    "element_count": 3174,
+    "vertex_count": 280406,
+    "triangle_count": 540984
+  },
+  "height_analysis": {
+    "elevation_m_local": 0.0,
+    "min_z_m": -5.0,
+    "max_z_m": 214.975,
+    "height_m": 219.975
+  },
+  "gfa": {
+    "gfa_m2": 71005.73
+  },
+  "facade_materials": {
+    "unique_material_count": 9,
+    "materials": [
+      {
+        "name": "NLRS_f2_beton prefab",
+        "element_count": 2078
+      },
+      {
+        "name": "NLRS_f2_beton ihwg",
+        "element_count": 570
+      },
+      {
+        "name": "NLRS_a_isolatie",
+        "element_count": 104
+      },
+      {
+        "name": "NLRS_h2_staal",
+        "element_count": 61
+      },
+      {
+        "name": "Default",
+        "element_count": 44
+      },
+      {
+        "name": "ISR_Algemeen",
+        "element_count": 35
+      },
+      {
+        "name": "ISR_Staal_ S355",
+        "element_count": 5
+      },
+      {
+        "name": "NLRS_n7_isolatie EPS",
+        "element_count": 4
+      },
+      {
+        "name": "NLRS_f2_beton ihwg (ongewapend)",
+        "element_count": 1
+      }
+    ]
+  },
+  "errors": []
+}
